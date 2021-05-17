@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components";
 import Loader from "../../Components/Loader"
 import Section from "../../Components/Section";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
 	padding: 0px 20px;
@@ -18,7 +19,6 @@ const Input = styled.input`
 	font-size: 28px;
 	width: 100%;
 `;
-
 
 const SearchPresenter = ({movieResults, tvResults, searchTerm, handleSubmit, updateTerm, loading, error}) => (
 	<Container>
@@ -38,7 +38,8 @@ const SearchPresenter = ({movieResults, tvResults, searchTerm, handleSubmit, upd
 				))}
 				</Section>
 			)}
-			
+			{error && <Message text={error} color="#e74c3c" />}
+			{tvResults && movieResults && tvResults.length === 0 && movieResults.length === 0 && <Message text="Nothing found" color="#95a5a6" />}
 		</>}
 	</Container>
 );

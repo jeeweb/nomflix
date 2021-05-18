@@ -43,8 +43,15 @@ const SearchPresenter = ({movieResults, tvResults, searchTerm, handleSubmit, upd
 			)}
 			{tvResults && tvResults.length > 0 && (
 				<Section title="TV Show Results">{tvResults.map(show => (
-				<span key={show.id}>{show.name}</span>
-				))}
+					<Poster
+						key={show.id}
+						id={show.id}
+						title={show.original_name}
+						imageUrl={show.poster_path}
+						rating={show.vote_average}
+						year={show.first_air_date && show.first_air_date.substring(0, 4)}
+					/>)
+				)}
 				</Section>
 			)}
 			{error && <Message text={error} color="#e74c3c" />}

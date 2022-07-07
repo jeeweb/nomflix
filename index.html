@@ -14,45 +14,22 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
   const root = document.getElementById("root");
-  // JSX
-  const Title = () => (
-    <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-      Hello I'm a title
-    </h3>
-  );
-  const Button = () => (
-    <button style={{background: "tomato"}} onClick={() => console.log("im clicked")}>
-    Click me
-    </button>
-  )
-  const Container = (
-    <div>
-      <button>Hello</button>
-      <Title />
-      <Button />
-    </div>
-  );
-  /*
-  const h3 = React.createElement(
-    "h3", 
-    {
-      id: "title",
-      onMouseEnter: () => console.log("mouse enter"),
-    }, 
-    "Hello, I'm a span");
-    
-  const btn = React.createElement(
-    "button",
-    {
-      onClick: () => console.log("im clicked"),
-      style: {
-        background: "tomato",
-      },
-    },
-    "click me!");
-  
-  const container = React.createElement("div", null, [Title, Button]);
-  */
-  ReactDOM.render(Container, root)
+  let counter = 0;
+  function countUp() {
+
+  }
+  function App(){
+    const [counter, setCounter] = React.useState(0);
+    const onClick = () => {
+      setCounter(counter + 1);
+    }
+    return (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={onClick}>Click me</button>
+      </div>
+    );
+  };
+  ReactDOM.render(<App />, root);
 </script>
 </html>

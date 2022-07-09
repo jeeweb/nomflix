@@ -14,15 +14,31 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
   function App(){
-    const [counter, setCounter] = React.useState(0);
-    const onClick = () => {
-      setCounter((current) => current + 1);
+    const [amount, setAmount] = React.useState(0);
+    const [flipped, setFlipped] = React.useState(false);
+    const onChange = (event) => {
+      setAmount(event.target.value)
     }
+    const reset = () => setAmount(0);
+    const onFlip = () => {
+      reset();
+      setFlipped((current) => !current);
+    };
     return (
       <div>
-        <h3>Total clicks: {counter}</h3>
-        <button onClick={onClick}>Click me</button>
-      </div>
+        <h1>Super Converter</h1>
+        <div>
+          <label htmlFor="minutes">Minutes</label>
+          <input type="number" id="minutes" value={flipped ? amount * 60 : amount} placeholder="Minutes" onChange={onChange} disabled={flipped} />
+        </div>
+        <div>
+          <h4>You want to convert {amount}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input type="number" id="hours" value={flipped ? amount : Math.round(amount / 60)} placeholder="Hours" onChange={onChange} disabled={!flipped} />
+        </div>
+        <button onClick={reset}>Reset</button>
+        <button onClick={onFlip}>Flip</button>
+      </div>  
     );
   };
   ReactDOM.render(<App />, root);
